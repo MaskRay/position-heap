@@ -1,0 +1,5 @@
+#!/usr/bin/perl
+chomp($c=<>);
+chomp($d=<>);
+$d=substr($d,0,1)."(?=".substr($d,1).")";
+print"@-\n" while$c=~/$d/g
