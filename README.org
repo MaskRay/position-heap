@@ -1,0 +1,76 @@
+#+TITLE:     position-heap
+#+AUTHOR:    Ray Song (a.k.a. MaskRay)
+#+DATE:      2011-06-29
+#+LANGUAGE:  en
+#+OPTIONS:   num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+
+* Description
+
+  /position-heap/ is an implementation of position heaps which is
+  inspired by _Ross McConnell_'s implementation:
+  http://www.cs.colostate.edu/PositionHeaps/.
+
+* References
+
+  _Andrzej Ehrenfeucht_, _Ross M. McConnell_, _Nissa Osheim_,
+  _Sung-Whan Woo_, /Position heaps: A simple and dynamic text indexing
+  data structure/, J. Discrete Algorithms 9(1): 100-121 (2011).
+
+* Usage
+
+  This project solves the problem of finding all occurrences of a
+  pattern string *P* in a text *T*. It will preprocess *T* (by
+  building a /position heap/) to speed up successive searches.
+
+  Let *n* denote the length of *T*, *m* denote the length of *S* and
+  *k* denote the number of occurrences.
+
+  The code implements two construction algorithms as follows:
+  - /naiveBuild/ means a simple algorithm to construct the /position
+    heap/ with O(n^2) worst-case time bound (O(n log n) expected time
+    for a randomly generated text).
+  - /fastBuild/ means an algorithm to construct the /position heap/
+    with Θ(n) time bound.
+
+  And two search algorithms:
+  - /naiveSearch/ means a simple search algorithm with O(m^2+k)
+    worst-case time bound.  This bound is pessimistic for it takes
+    O(m+k) expected time when either the text or the pattern is
+    randomly generated.
+  - /fastBuild/ means a construction algorithm with Θ(m+k) time
+    bound. This will do some extra work when constructing the
+    /position heap/.
+
+  For either step (construction and search), you have two choices, so
+  you can combine them freely to get four different programs:
+  - fastBuildFastSearch
+  - fastBuildNaiveSearch
+  - naiveBuildFastSearch
+  - naiveBuildNaiveSearch
+
+  Their meanings are self-explaining.
+
+  Each program receives two strings seperated by whitespace
+  representing *T* and *S* respectively, and prints out all
+  occurrences of *S* in *T*.  The leftmost position of *S* is labeled
+  *0*. These positions may not be ascending.
+
+* Examples
+  
+  ~% make fastBuildFastSearch~
+
+  ~g++ -g -D LINEAR_BUILD -D LINEAR_SEARCH main.cpp -o fastBuildFastSearch~
+
+  ~% ./fastBuildFastSearch~
+  
+  ~aabcabc~
+
+  ~ab~
+
+  ~4~
+
+  ~1~
+
+  *4 1* is returned by /fastBuildFastSearch/ which means the pattern
+  *ab* have two occurrences at position *4* and *1* in the text
+  *aabcabc*.
