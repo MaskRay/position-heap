@@ -136,6 +136,7 @@ public:
         free(T);
         delete[] nodes;
 #ifdef LINEAR_SEARCH
+        delete[] maxReach;
         delete[] discovery;
         delete[] finish;
 #endif

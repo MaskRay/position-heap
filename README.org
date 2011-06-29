@@ -8,7 +8,8 @@
 
   /position-heap/ is an implementation of position heaps which is
   inspired by _Ross McConnell_'s implementation:
-  http://www.cs.colostate.edu/PositionHeaps/.
+  http://www.cs.colostate.edu/PositionHeaps/. A position heap is a
+  simple and dynamic text indexing data structure.
 
 * References
 
@@ -41,6 +42,11 @@
     bound. This will do some extra work when constructing the
     /position heap/.
 
+  Note: The alphabet-size *Σ* factor is omitted in the time bounds. This
+  project is just a simple implementation, so it uses arrays to simplify
+  codes. You may use balanced binary search trees, hash tables or some other
+  data structures to replace arrays.
+  
   For either step (construction and search), you have two choices, so
   you can combine them freely to get four different programs:
   - fastBuildFastSearch
