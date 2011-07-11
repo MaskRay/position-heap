@@ -38,7 +38,7 @@
     worst-case time bound.  This bound is pessimistic for it takes
     O(m+k) expected time when either the text or the pattern is
     randomly generated.
-  - /fastBuild/ means a construction algorithm with Θ(m+k) time
+  - /fastSearch/ means a construction algorithm with Θ(m+k) time
     bound. This will do some extra work when constructing the
     /position heap/.
 
